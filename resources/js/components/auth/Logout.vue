@@ -1,11 +1,11 @@
-<!-- <template></template>
+<template></template>
 
 <script>
 export default {
     name: "Logout-From",
     mounted() {
         User.logout();
-        this.$router.push({ name: "LoginForm" });
+        this.$router.push({ name: "AdminLogin" });
         Toast.fire({
             icon: "success",
             title: "Successfully Log Out!"
@@ -19,9 +19,9 @@ export default {
 }
 </script>
 
-<style></style> -->
+<style></style>
 
-<template></template>
+<!-- <template></template>
 
 <script>
 import axios from 'axios';
@@ -96,4 +96,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style></style> -->

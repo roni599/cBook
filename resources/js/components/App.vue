@@ -1,11 +1,9 @@
 <template>
     <div class="main">
         <nav class="sb-topnav navbar navbar-expand navbar-info bg-info"
-            v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true">
+            v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/all_company' || $route.path === '/admin_login' || $route.path === '/forget' ? false : true">
             <router-link class="navbar-brand ps-3" to="/home">
-                <p class="text-white align-items-center mt-3">cBook</p>
-                <!-- <img src="/public/backend/assets/img/laptop_paradise2.png" alt="logo image" style="margin-left: -75px"
-                    width="300" class="logo-lg"> -->
+                <p class="text-white align-items-center mt-3">Company Name</p>
             </router-link>
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
                 <i class="fas fa-bars text-white fs-4"></i>
@@ -25,14 +23,14 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="../../../public/backend/images/users/436_ekRoni.png" class="images" alt="">
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>Setting</li>
-                        <li>Activity Log</li>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Activity Log</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            Logout
+                            <router-link class="dropdown-item" to="/logout">Logout</router-link>
                         </li>
                     </ul>
                 </li>
@@ -40,7 +38,7 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav"
-                v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true">
+                v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/admin_login' || $route.path === '/all_company' || $route.path === '/forget' ? false : true">
                 <nav class="sb-sidenav accordion sb-sidenav-light shadow" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav sb-sidenav-menu-heading">
@@ -65,130 +63,21 @@
                             <router-link class="nav-link rounded-end" to="admin_password">
                                 Admin & Password
                             </router-link>
-
-                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-users mt-1"></i>
-                                </div>
-                                Users
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Role</a>
-                                    <a href="#" class="nav-link">User Create</a>
-                                    <a class="nav-link" href="#">User List</a>
-                                </nav>
-                            </div>
-                            <a href="#" class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-th-large mt-1" style="color: grey !important;"></i>
-                                </div>
-                            </a>
-
-
-                            <a href="#" class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tags mt-1" style="color: grey !important;"></i>
-                                </div>
-                                Brands
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-
-                            <a href="#" class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-truck" style="color: grey !important;"></i>
-                                </div>
-                                Suppliers
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapsePayment" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                </div>
-                                Payment
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapsePayment" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Payment Create</a>
-                                    <a class="nav-link" href="#">Investment</a>
-                                    <a class="nav-link" href="#">Reserve Table</a>
-                                    <a class="nav-link" href="#">Bills Table</a>
-                                </nav>
-                            </div>
-
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseproducts" aria-expanded="false"
-                                aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-box-open mt-1"></i>
-                                </div>
-                                Products
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseproducts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Products Purchase</a>
-                                    <a class="nav-link" href="#">Purchase History</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExpense" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                </div>
-                                Expence
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseExpense" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Expense Category</a>
-                                    <a class="nav-link" href="#">Expense Create</a>
-                                    <a class="nav-link" href="#">Expense List</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-receipt mt-1" style="color: grey !important;"></i>
-                                </div>
-                                <span> Bill
-                                    Generate</span>
-                            </a> -->
                         </div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content"
-                :class="{ 'pc-container': true, 'custom-style': $route.path !== '/' && $route.path !== '/register' && $route.path !== '/forget' }">
+                :class="{ 'pc-container': true, 'custom-style': $route.path !== '/' && $route.path !== '/register' && $route.path !== '/forget' && $route.path !== '/all_company' && $route.path !== '/admin_login'}">
                 <main>
                     <div class="container-fluid px-2"
-                        :class="{ 'pc-content': true, 'no-padding': $route.path === '/' || $route.path === '/register' || $route.path === '/forget' }">
+                        :class="{ 'pc-content': true, 'no-padding': $route.path === '/' || $route.path === '/all_company' || $route.path === '/register' || $route.path === '/forget' || $route.path === '/admin_login'}">
                         <router-view></router-view>
                     </div>
                 </main>
                 <footer class="py-3 w-100">
                     <div class="container-fluid"
-                        v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true">
+                        v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/all_company' || $route.path === '/admin_login' || $route.path === '/forget' ? false : true">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Mystrix It 2024</div>
                             <div>

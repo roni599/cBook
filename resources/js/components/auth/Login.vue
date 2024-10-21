@@ -5,11 +5,12 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-5">
-              <h1 class="text-center mb-3">cBook</h1>
+
               <div class="small">
-                <router-link class="btn btn-sm btn-primary px-5 py-2 w-100 mb-4" to="/register">Create New
-                  Company</router-link>
                 <div class="beforeLogin" v-if="beforeLogin">
+                  <h1 class="text-center mb-3">cBook</h1>
+                  <router-link class="btn btn-sm btn-primary px-5 py-2 w-100 mb-4" to="/register">Create New
+                    Company</router-link>
                   <p class="fs-5">Already Have Your Company?</p>
                   <hr class="fw-bold" />
                   <form @submit.prevent="goHome">
@@ -36,34 +37,6 @@
                     <router-link to="/forget">Forgot Password?</router-link>
                   </form>
                 </div>
-
-                <div class="afterLogin" v-if="!beforeLogin">
-                  <p>
-                    <span class="text-primary">ekroni99@gmail.com</span><br />
-                    <span>Under your mail companies</span>
-                  </p>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Company Name</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Dream International Ltd</td>
-                        <td>Super Admin</td>
-                        <td><a href="#"  @click="goHomePage">Open</a></td>
-                      </tr>
-                      <tr>
-                        <td>Nuzaima Enterprise</td>
-                        <td>Accounts</td>
-                        <td><a href="#" @click="goHomePage">Open</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>
@@ -74,8 +47,12 @@
 </template>
 
 <script>
+import AllCompany from '../Profile/AllCompany.vue';
 export default {
   name: "Login-From",
+  components: {
+    AllCompany
+  },
   data() {
     return {
       form: {
@@ -95,18 +72,14 @@ export default {
     },
     goHome() {
       this.beforeLogin = false;
-      // this.$router.push({ name: "Home" })
+      this.$router.push({ name: "AllCompany" })
     },
-    goHomePage(){
-      this.$router.push({name:"Home"})
-    }
 
   },
 };
 </script>
 
 <style scoped>
-/* Optional: Style for eye icon */
 .position-relative {
   position: relative;
 }
@@ -122,6 +95,5 @@ export default {
 .fas.fa-eye,
 .fas.fa-eye-slash {
   color: #6c757d;
-  /* Set icon color */
 }
 </style>

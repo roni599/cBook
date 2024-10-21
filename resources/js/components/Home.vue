@@ -1,6 +1,5 @@
 <template>
   <div class="container-fluid px-4">
-   
   </div>
 </template>
 
@@ -9,11 +8,11 @@ export default {
   name: "Home-vue",
   data() {
     return {
-     
+
     };
   },
   methods: {
-   
+
   },
   mounted() {
   }

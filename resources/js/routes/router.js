@@ -6,7 +6,6 @@ import Forget from '../components/auth/Forget.vue';
 import Home from '../components/Home.vue';
 import Logout from '../components/auth/Logout.vue';
 import Edit_profile from '../components/auth/Edit_profile.vue';
-import Activity_log from '../components/auth/Activity_log.vue';
 import Home2 from '../components/auth/Home2.vue';
 
 import GeneralInfo from '../components/Profile/GeneralInfo.vue';
@@ -15,6 +14,8 @@ import BankInfo from '../components/Profile/BankInfo.vue';
 import BusinessAddress from '../components/Profile/BusinessAddress.vue';
 import LogoSignature from '../components/Profile/LogoSignature.vue';
 import AdminPassword from '../components/Profile/AdminPassword.vue';
+import AdminLogin from '../components/Profile/AdminLogin.vue';
+import AllCompany from '../components/Profile/AllCompany.vue';
 
 const routes = [
     { name: 'LoginForm', component: Login, path: '/' },
@@ -23,7 +24,6 @@ const routes = [
     { name: 'Home', component: Home, path: '/home' },
     { name: 'Logout', component: Logout, path: '/logout' },
     { name: "Edit_profile", component: Edit_profile, path: '/edit_profile' },
-    { name: "Activity_log", component: Activity_log, path: '/activity_log' },
     { name: "Home2", component: Home2, path: '/home2' },
 
     { name: "GeneralInfo", component: GeneralInfo, path: '/general_info' },
@@ -32,6 +32,8 @@ const routes = [
     { name: "BusinessAddress", component: BusinessAddress, path: '/business_address' },
     { name: "LogoSignature", component: LogoSignature, path: '/logo_signature' },
     { name: "AdminPassword", component: AdminPassword, path: '/admin_password' },
+    { name: "AdminLogin", component: AdminLogin, path: '/admin_login' },
+    { name: "AllCompany", component: AllCompany, path: '/all_company' }
 ];
 
 const router = createRouter({

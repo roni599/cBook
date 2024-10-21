@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row mx-3 mt-3">
+    <div class="row justify-content-center mt-5">
       <div class="col-lg-8">
         <form @submit.prevent="signup">
           <div class="row mb-3">
@@ -36,6 +36,9 @@
           <div class="form-floating mb-3">
             <input class="form-control" id="inputEmail7" type="text" placeholder="name@example.com" />
             <label for="inputEmail2">Address</label>
+          </div>
+          <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+            <button type="button" class="btn btn-primary w-100">Update</button>
           </div>
         </form>
       </div>
