@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activitylog', function (Blueprint $table) {
+        Schema::create('otp_verifications', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->nullable();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->nullable()->default('1');
+            $table->string('email')->index(); // Optional: Indexing for faster searches
+            $table->string('otp');
+            $table->timestamp('expires_at');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activitylog');
+        Schema::dropIfExists('otp_verifications');
     }
 };

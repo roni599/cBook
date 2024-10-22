@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOtpEmail;
 use App\Http\Controllers\Controller;
+use App\Mail\OtpMail;
 use App\Models\ActivityLog;
+use App\Models\OtpVerification;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -19,7 +25,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['login', 'signup']]);
+        $this->middleware('JWT', ['except' => ['login', 'signup', 'sendOTP']]);
     }
 
     /**
@@ -45,45 +51,61 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function sendOTP(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users,email',
+        ]);
+
+        $otp = rand(100000, 999999);
+        OtpVerification::create([
+            'email' => $request->email,
+            'otp' => $otp,
+            'expires_at' => Carbon::now()->addMinutes(1),
+        ]);
+        SendOtpEmail::dispatch($request->email, $otp);
+
+        return response()->json([
+            'message' => 'OTP sent to your email',
+            'companyName' => $request->companyName,
+            'email' => $request->email,
+        ]);
+    }
     public function signup(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|string|max:15',
-            'role_id' => 'required|exists:roles,id',
-            'password' => 'required|string|min:8|confirmed',
-            'image' => 'nullable|string',
+            'otp' => 'required|string',
         ]);
-
-        $user = new User();
-        $user->user_name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->password = Hash::make($request->password);
-        $user->role_id = $request->role_id;
-
-        $imageName = '';
-        if ($request->image) {
-            $position = strpos($request->image, ';');
-            $sub = substr($request->image, 0, $position);
-            $ext = explode('/', $sub)[1];
-            $imageName = rand(1, 1000) . '_' . $request->name . '.' . $ext;
-            $image = str_replace('data:image/' . $ext . ';base64,', '', $request->image);
-            $image = str_replace(' ', '+', $image);
-
-            $imagePath = public_path('backend/images/users/' . $imageName);
-
-            // Ensure the directory exists
-            if (!File::isDirectory(public_path('backend/images/users'))) {
-                File::makeDirectory(public_path('backend/images/users'), 0755, true, true);
-            }
-            File::put($imagePath, base64_decode($image));
-            $user->profile_img = $imageName;
+        $otpVerification = OtpVerification::where('email', $request->email)
+            ->latest() // Orders by 'created_at' in descending order
+            ->first();
+        if (!$otpVerification) {
+            return response()->json(['message' => 'OTP not found'], 404);
         }
+
+        if (Carbon::now()->greaterThan($otpVerification->expires_at)) {
+            return response()->json(['message' => 'OTP has expired'], 400);
+        }
+
+        if ($otpVerification->otp !== $request->otp) {
+            return response()->json(['message' => 'Invalid OTP'], 400);
+        }
+        $user = new User();
+        $user->userName = $request->userName;
+        $user->email = $request->email;
+        $user->mobile = $request->mobile;
+        $user->password = Hash::make($request->password);
+        $user->companyName = $request->companyName;
+        $user->country = $request->country;
+
         $user->save();
 
-        return response()->json(['message' => 'User created successfully']);
+        $otpVerification->delete();
+        $credentials = ['email' => $request->email, 'password' => $request->password];
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Could not log in after signup'], 401);
+        }
+        return $this->respondWithToken($token);
     }
 
     /**
@@ -141,12 +163,12 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => $ttl, // TTL in seconds for 24 hours
             'user_id' => auth()->user()->id,
-            'name' => auth()->user()->user_name,
-            'email' => auth()->user()->email,
-            'phone' => auth()->user()->phone,
-            'role_name' => auth()->user()->role->role_name,
-            'image' => auth()->user()->profile_img,
-            'status' => auth()->user()->status,
+            'name' => auth()->user()->userName,
+            // 'email' => auth()->user()->email,
+            // 'phone' => auth()->user()->phone,
+            // 'role_name' => auth()->user()->role->role_name,
+            // 'image' => auth()->user()->profile_img,
+            // 'status' => auth()->user()->status,
         ]);
     }
 }

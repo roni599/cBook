@@ -19,13 +19,12 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_name',
+        'userName',
+        'companyName',
+        'country',
+        'mobile',
         'email',
-        'phone',
         'password',
-        'profile_img',
-        'status',
-        'role_id',
     ];
 
     /**
@@ -68,75 +67,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
-
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
-    public function suppliers()
-    {
-        return $this->hasMany(Supplier::class);
-    }
-    public function stocks()
-    {
-        return $this->hasMany(Stock::class);
-    }
-    public function serials()
-    {
-        return $this->hasMany(Serial::class);
-    }
-    public function paymenttypes()
-    {
-        return $this->hasMany(Paymenttype::class, 'user_id');
-    }
-    public function investments()
-    {
-        return $this->hasMany(Investment::class);
-    }
-    // public function reserves()
-    // {
-    //     return $this->hasMany(Reserve::class);
-    // }
-    public function expenseCategories()
-    {
-        return $this->hasMany(ExpenseCategory::class);
-    }
-    // public function expenses()
-    // {
-    //     return $this->hasMany(Expense::class);
-    // }
-    public function expenser()
-    {
-        return $this->hasMany(User::class, 'expenser_id');
-    }
-    public function reserves()
-    {
-        return $this->hasMany(Reserve::class);
-    }
-
-
-    public function expenses()
-    {
-        return $this->hasMany(Expense::class, 'expenser_id');
-    }
-    public function customers()
-    {
-        return $this->hasMany(Customer::class);
-    }
-    public function bills()
-    {
-        return $this->hasMany(Bill::class);
-    }
-    public function activityLogs()
-    {
-        return $this->hasMany(ActivityLog::class);
-    }
-    
 }
