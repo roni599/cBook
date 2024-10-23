@@ -12,15 +12,7 @@
               <div v-if="currentStep === 'beforeOTP'" class="beforeOTP">
                 <form @submit.prevent="sendOTP">
                   <div class="row mb-3">
-                    <div class="col-md-6">
-                      <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputUserName" type="text" placeholder="Enter your name"
-                          v-model="form.userName" />
-                        <small class="text-danger" v-if="errors.userName">{{ errors.userName[0] }}</small>
-                        <label for="inputUserName">Company Owner Name</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" id="inputCompanyName" type="text" placeholder="Enter company name"
                           v-model="form.companyName" />
@@ -133,7 +125,6 @@ export default {
       otp: '',
       isValidOtp: false,
       form: {
-        userName: '',
         companyName: '',
         otp: '',
         country: '',

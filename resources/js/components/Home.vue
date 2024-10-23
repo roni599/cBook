@@ -4,19 +4,48 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { inject } from 'vue';
 export default {
   name: "Home-vue",
   data() {
+    const company_Name = inject('company_Name');
     return {
-
+      company_id: null,
+      companyName: null,
+      company_Name,
     };
   },
   methods: {
 
+    async companyfind() {
+      console.log(this.company_id)
+      axios.get(`/api/user_company_find/${this.company_id}`)
+        .then((res) => {
+          console.log(res)
+          if (res.data.companyName) {
+            this.companyName = res.data.companyName
+            this.company_Name = res.data.companyName
+          }
+          else {
+            this.companyName = res.data.company_name
+            this.company_Name = res.data.company_name
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
   },
   mounted() {
+    if (!User.loggedIn()) {
+      this.$router.push({ name: "LoginForm" });
+    }
+    this.company_id = localStorage.getItem('company_id')
+    this.companyfind()
   }
-};
+}
 </script>
 
 <style>

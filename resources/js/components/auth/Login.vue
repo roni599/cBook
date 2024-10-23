@@ -13,15 +13,17 @@
                     Company</router-link>
                   <p class="fs-5">Already Have Your Company?</p>
                   <hr class="fw-bold" />
-                  <form @submit.prevent="goHome">
+                  <form @submit.prevent="login">
                     <div class="form-floating mb-3" v-if="!showPassword">
                       <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com"
                         v-model="form.email" />
+                      <small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small>
                       <label for="inputEmail">Email address</label>
                     </div>
                     <div class="form-floating mb-3" v-if="showPassword">
                       <input class="form-control" id="inputPassword" type="password" placeholder="Password"
                         v-model="form.password" />
+                      <small class="text-danger" v-if="errors.password">{{ errors.password[0] }}</small>
                       <label for="inputPassword">Password</label>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mb-1">
@@ -70,11 +72,50 @@ export default {
     nextStep() {
       this.showPassword = true;
     },
-    goHome() {
-      this.beforeLogin = false;
-      this.$router.push({ name: "AllCompany" })
+    async login() {
+      console.log(this.form)
+      this.loading = true;
+      try {
+        const res = await axios.post("/api/auth/login", this.form);
+        console.log(res)
+        if (res) {
+          User.responseAfterLogin(res);
+          this.beforeLogin = false;
+          this.$router.push({ name: "AllCompany" })
+          Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+          });
+        }
+      } catch (error) {
+        console.log(error)
+        if (error.response && error.response.data.errors) {
+          this.errors = error.response.data.errors;
+          Toast.fire({
+            icon: "warning",
+            title: "Invalid email or password"
+          });
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: "An error occurred. Please try again later."
+          });
+        }
+      } finally {
+        this.loading = false;
+      }
     },
+    // goHome() {
+    //   this.beforeLogin = false;
+    //   this.$router.push({ name: "AllCompany" })
+    // },
 
+
+  },
+  mounted() {
+    if (User.loggedIn()) {
+      this.$router.push({ name: "AllCompany" });
+    }
   },
 };
 </script>

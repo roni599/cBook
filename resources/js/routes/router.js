@@ -16,6 +16,7 @@ import LogoSignature from '../components/Profile/LogoSignature.vue';
 import AdminPassword from '../components/Profile/AdminPassword.vue';
 import AdminLogin from '../components/Profile/AdminLogin.vue';
 import AllCompany from '../components/Profile/AllCompany.vue';
+import CompanyCreate from '../components/Profile/CompanyCreate.vue';
 
 const routes = [
     { name: 'LoginForm', component: Login, path: '/' },
@@ -33,7 +34,9 @@ const routes = [
     { name: "LogoSignature", component: LogoSignature, path: '/logo_signature' },
     { name: "AdminPassword", component: AdminPassword, path: '/admin_password' },
     { name: "AdminLogin", component: AdminLogin, path: '/admin_login' },
-    { name: "AllCompany", component: AllCompany, path: '/all_company' }
+    { name: "AllCompany", component: AllCompany, path: '/all_company' },
+    {name:"CompanyCreate", component:CompanyCreate,path:'/company_create'}
+
 ];
 
 const router = createRouter({

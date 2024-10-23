@@ -8,6 +8,7 @@ use App\Http\Controllers\Calculate\CalculateController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\CartItem\CartItemController;
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Expense\ExpenseCategoryController;
 use App\Http\Controllers\Expense\ExpenseController;
@@ -47,4 +48,10 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('me', [AuthController::class, 'me']);
+
+
 });
+Route::post('/company', [CompanyController::class, 'index']);
+Route::get('/user_allcompany/{id}', [CompanyController::class, 'user_allcompany']);
+Route::get('/user_company_find/{id}', [CompanyController::class, 'user_company_find']);
+Route::post('/company_store', [CompanyController::class, 'store']);

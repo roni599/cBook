@@ -3,13 +3,26 @@
 <script>
 export default {
     name: "Logout-From",
+    // mounted() {
+    //     User.logout();
+    //     this.$router.push({ name: "AllCompany" });
+    //     Toast.fire({
+    //         icon: "success",
+    //         title: "Successfully Log Out!"
+    //     });
+    // },
     mounted() {
-        User.logout();
-        this.$router.push({ name: "AdminLogin" });
-        Toast.fire({
-            icon: "success",
-            title: "Successfully Log Out!"
-        });
+        if (!User.loggedIn()) {
+            this.$router.push({ name: "LoginForm" });
+        }
+        else {
+            User.logout();
+            this.$router.push({ name: "LoginForm" });
+            Toast.fire({
+                icon: "success",
+                title: "Successfully Switch for choose account!"
+            });
+        }
     },
     data() {
         return {

@@ -44,10 +44,6 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Email or password is invalid'], 401);
         }
-        ActivityLog::create([
-            'user_id' => auth()->user()->id,
-            'type' => 'login',
-        ]);
         return $this->respondWithToken($token);
     }
 
@@ -91,7 +87,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid OTP'], 400);
         }
         $user = new User();
-        $user->userName = $request->userName;
         $user->email = $request->email;
         $user->mobile = $request->mobile;
         $user->password = Hash::make($request->password);
@@ -162,10 +157,10 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => $ttl, // TTL in seconds for 24 hours
-            'user_id' => auth()->user()->id,
-            'name' => auth()->user()->userName,
-            // 'email' => auth()->user()->email,
-            // 'phone' => auth()->user()->phone,
+            'name' => auth()->user()->id,
+            // 'name' => auth()->user()->userName,
+            'email' => auth()->user()->email,
+            'mobile' => auth()->user()->mobile,
             // 'role_name' => auth()->user()->role->role_name,
             // 'image' => auth()->user()->profile_img,
             // 'status' => auth()->user()->status,
