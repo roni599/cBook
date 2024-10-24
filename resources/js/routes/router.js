@@ -17,6 +17,9 @@ import AdminPassword from '../components/Profile/AdminPassword.vue';
 import AdminLogin from '../components/Profile/AdminLogin.vue';
 import AllCompany from '../components/Profile/AllCompany.vue';
 import CompanyCreate from '../components/Profile/CompanyCreate.vue';
+import AllAccount from '../components/Allaccounts/AllAccount.vue';
+import Setting from '../components/SettingsSalesForm/Setting.vue';
+import Customer from '../components/Customer/customer.vue';
 
 const routes = [
     { name: 'LoginForm', component: Login, path: '/' },
@@ -35,7 +38,12 @@ const routes = [
     { name: "AdminPassword", component: AdminPassword, path: '/admin_password' },
     { name: "AdminLogin", component: AdminLogin, path: '/admin_login' },
     { name: "AllCompany", component: AllCompany, path: '/all_company' },
-    {name:"CompanyCreate", component:CompanyCreate,path:'/company_create'}
+    { name: "CompanyCreate", component: CompanyCreate, path: '/company_create' },
+
+    { name: "AllAccount", component: AllAccount, path: '/all_account' },
+    { name: "Setting", component: Setting, path: '/setting' },
+
+    {name:"Customer",component:Customer,path:'/customer'}
 
 ];
 

@@ -26,6 +26,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <!-- <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="#">Activity Log</a></li> -->
+                        <li><router-link class="dropdown-item" to="/setting">Settings</router-link></li>
                         <li><router-link class="dropdown-item" to="/general_info">General Info</router-link></li>
                         <li><router-link class="dropdown-item" to="/business_info">Business Info</router-link></li>
                         <li><router-link class="dropdown-item" to="/bank_info">Bank Info</router-link></li>
@@ -59,16 +60,14 @@
                                 Dashboard
                             </router-link>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <router-link class="nav-link collapsed"
+                                :class="{ 'active': $route.path === '/all_account' }" to="/all_account">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-users mt-1"></i>
+                                    <i class="fas fa-users mt-1" style="color: grey !important;"></i>
                                 </div>
-                                All Accounts
-                                <!-- <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div> -->
-                            </a>
+                                <span :class="{ 'text-primary': $route.path === '/all_account' }">All Accounts</span>
+                            </router-link>
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
@@ -505,22 +504,22 @@ export default {
     methods: {
 
     },
-    mounted() {
-        if (!User.loggedIn()) {
-            this.$router.push({ name: "LoginForm" });
-        } else {
-            const lastRoute = localStorage.getItem('lastRoute');
-            if (lastRoute && this.$route.path !== lastRoute) {
-                this.$router.push(lastRoute);
-            }
-        }
-    },
-    watch: {
-        $route(to) {
-            localStorage.setItem('lastRoute', to.fullPath);
-        }
-    },
-    created() { }
+    // mounted() {
+    //     if (!User.loggedIn()) {
+    //         this.$router.push({ name: "LoginForm" });
+    //     } else {
+    //         const lastRoute = localStorage.getItem('lastRoute');
+    //         if (lastRoute && this.$route.path !== lastRoute) {
+    //             this.$router.push(lastRoute);
+    //         }
+    //     }
+    // },
+    // watch: {
+    //     $route(to) {
+    //         localStorage.setItem('lastRoute', to.fullPath);
+    //     }
+    // },
+    // created() { }
 };
 </script>
 

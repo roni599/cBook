@@ -19,10 +19,8 @@ export default {
   methods: {
 
     async companyfind() {
-      console.log(this.company_id)
       axios.get(`/api/user_company_find/${this.company_id}`)
         .then((res) => {
-          console.log(res)
           if (res.data.companyName) {
             this.companyName = res.data.companyName
             this.company_Name = res.data.companyName
@@ -42,8 +40,11 @@ export default {
     if (!User.loggedIn()) {
       this.$router.push({ name: "LoginForm" });
     }
-    this.company_id = localStorage.getItem('company_id')
-    this.companyfind()
+    else{
+      this.$router.push({name:"Home"})
+      this.company_id = localStorage.getItem('company_id')
+      this.companyfind()
+    }
   }
 }
 </script>

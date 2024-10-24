@@ -51,7 +51,7 @@ Route::group([
 
 
 });
-Route::post('/company', [CompanyController::class, 'index']);
+Route::get('/company', [CompanyController::class, 'index']);
 Route::get('/user_allcompany/{id}', [CompanyController::class, 'user_allcompany']);
 Route::get('/user_company_find/{id}', [CompanyController::class, 'user_company_find']);
 Route::post('/company_store', [CompanyController::class, 'store']);
