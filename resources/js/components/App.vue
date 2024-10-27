@@ -78,6 +78,13 @@
                                     <i class="fas fa-angle-down"></i>
                                 </div>
                             </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                                data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <router-link to="/customer_list" class="nav-link">Customer</router-link>
+                                    <router-link to="supplier_list" class="nav-link">Supplier</router-link>
+                                </nav>
+                            </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
@@ -298,163 +305,6 @@
                                     <i class="fas fa-angle-down"></i>
                                 </div> -->
                             </a>
-                            <!-- <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/role' }"
-                                        to="/role">Role</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/user_create' }"
-                                        to="/user_create">User Create</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/all_user' }"
-                                        to="/all_user">User List</router-link>
-                                </nav>
-                            </div>
-                            <router-link class="nav-link collapsed" :class="{ 'active': $route.path === '/category' }"
-                                to="/category">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-th-large mt-1" style="color: grey !important;"></i>
-                                </div>
-                                <span :class="{ 'text-primary': $route.path === '/category' }">Category</span>
-                            </router-link>
-
-
-                            <router-link :class="{ 'active': $route.path === '/brand' }" to="/brand"
-                                class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tags mt-1" style="color: grey !important;"></i>
-                                </div>
-                                Brands
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </router-link>
-
-                            <router-link :class="{ 'active': $route.path === '/supplier' }" to="/supplier"
-                                class="nav-link collapsed">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-truck" style="color: grey !important;"></i>
-                                </div>
-                                Suppliers
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </router-link>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapsePayment" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                </div>
-                                Payment
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapsePayment" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/payment_type' }"
-                                        to="/payment_type">Payment Create</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/investment' }"
-                                        to="/investment">Investment</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/reserve_table' }"
-                                        to="/reserve_table">Reserve Table</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/bills_table' }"
-                                        to="/bills_table">Bills Table</router-link>
-                                </nav>
-                            </div>
-
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseproducts" aria-expanded="false"
-                                aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-box-open mt-1"></i>
-                                </div>
-                                Products
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseproducts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/product_create' }"
-                                        to="/product_create">Products Purchase</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/all_product' }"
-                                        to="/all_product">Purchase History</router-link>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseStocks" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-chart-line mt-1"></i>
-                                </div>
-                                Stocks
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseStocks" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/stocks_create' }"
-                                        to="/stocks_create">Stocks Create</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/all_stocks' }"
-                                        to="/all_stocks">Stocks List</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/all_serials' }"
-                                        to="/all_serials">Serials List</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/return_repair' }"
-                                        to="/return_repair">Return && Repair</router-link>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExpense" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                </div>
-                                Expence
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="collapse" id="collapseExpense" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/expence_category' }"
-                                        to="/expence_category">Expense Category</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/expence_create' }"
-                                        to="/expence_create">Expense Create</router-link>
-                                    <router-link class="nav-link"
-                                        :class="{ 'active text-primary': $route.path === '/all_expense' }"
-                                        to="/all_expense">Expense List</router-link>
-                                </nav>
-                            </div>
-                            <router-link class="nav-link collapsed"
-                                :class="{ 'active': $route.path === '/bill_generate' }" to="/bill_generate">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-receipt mt-1" style="color: grey !important;"></i>
-                                </div>
-                                <span :class="{ 'text-primary': $route.path === '/bill_generate' }"> Bill
-                                    Generate</span>
-                            </router-link> -->
                         </div>
                     </div>
                 </nav>

@@ -199,7 +199,7 @@ export default {
             icon: "success",
             title: "Signed in successfully"
           });
-          this.$router.push({ name: "Home" });
+          this.$router.push({ name: "AllCompany" });
         }
       } catch (error) {
         console.log(error)

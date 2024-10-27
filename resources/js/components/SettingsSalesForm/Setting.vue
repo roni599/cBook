@@ -7,67 +7,6 @@
             </div>
         </div>
         <nav>
-            <!-- <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">General Setting</button>
-                <button class="nav-link" id="nav-sales-tab" data-bs-toggle="tab" data-bs-target="#nav-sales"
-                    type="button" role="tab" aria-controls="nav-sales" aria-selected="false">Sales</button>
-                <button class="nav-link" id="nav-purchase-tab" data-bs-toggle="tab" data-bs-target="#nav-purchase"
-                    type="button" role="tab" aria-controls="nav-purchase" aria-selected="false">Purchase</button>
-                <button class="nav-link" id="nav-pos-tab" data-bs-toggle="tab" data-bs-target="#nav-pos" type="button"
-                    role="tab" aria-controls="nav-pos" aria-selected="false">POS</button>
-                <button class="nav-link" id="nav-service-sales-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-service-sales" type="button" role="tab" aria-controls="nav-service-sales"
-                    aria-selected="false">Service Sales</button>
-                <button class="nav-link" id="nav-warranty-tab" data-bs-toggle="tab" data-bs-target="#nav-warranty"
-                    type="button" role="tab" aria-controls="nav-warranty" aria-selected="false">Warranty
-                    Service</button>
-                <button class="nav-link" id="nav-project-tab" data-bs-toggle="tab" data-bs-target="#nav-project"
-                    type="button" role="tab" aria-controls="nav-project" aria-selected="false">Project</button>
-                <button class="nav-link" id="nav-manufacture-tab" data-bs-toggle="tab" data-bs-target="#nav-manufacture"
-                    type="button" role="tab" aria-controls="nav-manufacture" aria-selected="false">Manufacture</button>
-                <button class="nav-link" id="nav-hr-tab" data-bs-toggle="tab" data-bs-target="#nav-hr" type="button"
-                    role="tab" aria-controls="nav-hr" aria-selected="false">HR/Payroll</button>
-                <button class="nav-link" id="nav-sms-tab" data-bs-toggle="tab" data-bs-target="#nav-sms" type="button"
-                    role="tab" aria-controls="nav-sms" aria-selected="false">SMS</button>
-                <button class="nav-link" id="nav-email-tab" data-bs-toggle="tab" data-bs-target="#nav-email"
-                    type="button" role="tab" aria-controls="nav-email" aria-selected="false">E-Mail</button>
-                <button class="nav-link" id="nav-whatsapp-tab" data-bs-toggle="tab" data-bs-target="#nav-whatsapp"
-                    type="button" role="tab" aria-controls="nav-whatsapp" aria-selected="false">WhatsApp</button>
-                <button class="nav-link" id="nav-barcode-tab" data-bs-toggle="tab" data-bs-target="#nav-barcode"
-                    type="button" role="tab" aria-controls="nav-barcode" aria-selected="false">Barcode</button>
-                <button class="nav-link" id="nav-sticker-print-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-sticker-print" type="button" role="tab" aria-controls="nav-sticker-print"
-                    aria-selected="false">Sticker Print</button>
-                <button class="nav-link" id="nav-payment-gateway-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-payment-gateway" type="button" role="tab" aria-controls="nav-payment-gateway"
-                    aria-selected="false">Payment Gateway</button>
-                <button class="nav-link" id="nav-multicurrency-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-multicurrency" type="button" role="tab" aria-controls="nav-multicurrency"
-                    aria-selected="false">Multicurrency</button>
-                <button class="nav-link" id="nav-online-store-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-online-store" type="button" role="tab" aria-controls="nav-online-store"
-                    aria-selected="false">Online Store</button>
-                <button class="nav-link" id="nav-ecommerce-store-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-ecommerce-store" type="button" role="tab" aria-controls="nav-ecommerce-store"
-                    aria-selected="false">E-Commerce Store</button>
-                <button class="nav-link" id="nav-loan-credit-tab" data-bs-toggle="tab" data-bs-target="#nav-loan-credit"
-                    type="button" role="tab" aria-controls="nav-loan-credit" aria-selected="false">Loan/Credit</button>
-                <button class="nav-link" id="nav-company-website-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-company-website" type="button" role="tab" aria-controls="nav-company-website"
-                    aria-selected="false">Company Website</button>
-                <button class="nav-link" id="nav-marketplace-tab" data-bs-toggle="tab" data-bs-target="#nav-marketplace"
-                    type="button" role="tab" aria-controls="nav-marketplace" aria-selected="false">Marketplace</button>
-                <button class="nav-link" id="nav-user-management-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-user-management" type="button" role="tab" aria-controls="nav-user-management"
-                    aria-selected="false">User Management</button>
-                <button class="nav-link" id="nav-marketing-team-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-marketing-team" type="button" role="tab" aria-controls="nav-marketing-team"
-                    aria-selected="false">Marketing Team</button>
-                <button class="nav-link" id="nav-customer-level-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-customer-level" type="button" role="tab" aria-controls="nav-customer-level"
-                    aria-selected="false">Customer Level</button>
-            </div> -->
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
                     type="button" role="tab" aria-controls="nav-home" aria-selected="true"
@@ -286,4 +225,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

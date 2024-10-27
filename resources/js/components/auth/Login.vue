@@ -73,11 +73,9 @@ export default {
       this.showPassword = true;
     },
     async login() {
-      console.log(this.form)
       this.loading = true;
       try {
         const res = await axios.post("/api/auth/login", this.form);
-        console.log(res)
         if (res) {
           User.responseAfterLogin(res);
           this.beforeLogin = false;
@@ -105,12 +103,6 @@ export default {
         this.loading = false;
       }
     },
-    // goHome() {
-    //   this.beforeLogin = false;
-    //   this.$router.push({ name: "AllCompany" })
-    // },
-
-
   },
   mounted() {
     if (User.loggedIn()) {

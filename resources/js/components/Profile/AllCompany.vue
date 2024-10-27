@@ -32,14 +32,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>{{ mainCompany }}</td>
-                                            <td>Super Admin</td>
-                                            <td><a href="#" @click="goHomePage(mainCompany_id)">Open</a></td>
-                                        </tr>
                                         <tr v-for="company in companies" :key="company.id">
                                             <td>{{ company.company_name }}</td>
-                                            <td>Accounts</td>
+                                            <td>Supper Admin</td>
                                             <td><a href="#" @click="goHomePage(company.id)">Open</a></td>
                                         </tr>
                                     </tbody>
@@ -65,7 +60,6 @@ export default {
             user_id: null,
             companies: [],
             mainCompany: '',
-            mainCompany_id: null,
             user_email: ''
         }
     },
@@ -96,7 +90,6 @@ export default {
                     if (res) {
                         this.companies = res.data.companies
                         this.mainCompany = res.data.companyName
-                        this.mainCompany_id = res.data.id
                     }
                 })
                 .catch((error) => {
@@ -116,4 +109,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

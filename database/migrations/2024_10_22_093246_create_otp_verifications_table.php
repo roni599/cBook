@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('otp_verifications', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->index(); // Optional: Indexing for faster searches
+            $table->string('email')->index();
             $table->string('otp');
             $table->timestamp('expires_at');
             $table->timestamps();

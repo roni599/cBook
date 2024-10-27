@@ -19,7 +19,7 @@ class User {
     }
 
     loggedIn() {
-        
+
         return this.hasToken();
     }
 

@@ -19,7 +19,8 @@ import AllCompany from '../components/Profile/AllCompany.vue';
 import CompanyCreate from '../components/Profile/CompanyCreate.vue';
 import AllAccount from '../components/Allaccounts/AllAccount.vue';
 import Setting from '../components/SettingsSalesForm/Setting.vue';
-import Customer from '../components/Customer/customer.vue';
+import CustomerList from '../components/Parties/CustomerList.vue';
+import SupplierList from '../components/Parties/SupplierList.vue';
 
 const routes = [
     { name: 'LoginForm', component: Login, path: '/' },
@@ -43,10 +44,10 @@ const routes = [
     { name: "AllAccount", component: AllAccount, path: '/all_account' },
     { name: "Setting", component: Setting, path: '/setting' },
 
-    {name:"Customer",component:Customer,path:'/customer'}
+    { name: "CustomerList", component: CustomerList, path: '/customer_list' },
+    { name: "SupplierList", component: SupplierList, path: '/supplier_list' },
 
 ];
-
 const router = createRouter({
     history: createWebHistory(),
     routes

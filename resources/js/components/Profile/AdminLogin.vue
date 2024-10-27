@@ -55,7 +55,6 @@
                                                 <router-link class="d-block" to="/forget">Forgot Password?</router-link>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -83,4 +82,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

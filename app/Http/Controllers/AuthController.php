@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendOtpEmail;
 use App\Http\Controllers\Controller;
-use App\Mail\OtpMail;
-use App\Models\ActivityLog;
+use App\Models\Company;
 use App\Models\OtpVerification;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -88,12 +84,18 @@ class AuthController extends Controller
         }
         $user = new User();
         $user->email = $request->email;
-        $user->mobile = $request->mobile;
         $user->password = Hash::make($request->password);
-        $user->companyName = $request->companyName;
         $user->country = $request->country;
-
         $user->save();
+
+        $userId = $user->id;
+        $company = new Company();
+        $company->company_name = $request->companyName;
+        $company->mobile = $request->mobile;
+        $company->email = $request->email;
+        $company->user_id = $userId;
+
+        $company->save();
 
         $otpVerification->delete();
         $credentials = ['email' => $request->email, 'password' => $request->password];

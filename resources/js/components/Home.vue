@@ -12,26 +12,17 @@ export default {
     const company_Name = inject('company_Name');
     return {
       company_id: null,
-      companyName: null,
       company_Name,
     };
   },
   methods: {
-
     async companyfind() {
       axios.get(`/api/user_company_find/${this.company_id}`)
         .then((res) => {
-          if (res.data.companyName) {
-            this.companyName = res.data.companyName
-            this.company_Name = res.data.companyName
-          }
-          else {
-            this.companyName = res.data.company_name
-            this.company_Name = res.data.company_name
-          }
+          this.company_Name = res.data.company_name;
         })
         .catch((error) => {
-          console.log(error)
+          this.$router.push({ name: "AllCompany" })
         })
     }
 
@@ -40,10 +31,14 @@ export default {
     if (!User.loggedIn()) {
       this.$router.push({ name: "LoginForm" });
     }
-    else{
-      this.$router.push({name:"Home"})
+    else {
       this.company_id = localStorage.getItem('company_id')
-      this.companyfind()
+      if (this.company_id) {
+        this.companyfind()
+      }
+      else {
+        this.$router.push({ name: "AllCompany" })
+      }
     }
   }
 }

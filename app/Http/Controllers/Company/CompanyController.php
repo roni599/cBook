@@ -21,10 +21,7 @@ class CompanyController extends Controller
     }
     public function user_company_find($id)
     {
-        $company = User::with('companies')->find($id);
-        if(!$company){
-            $company=Company::findOrFail($id);
-        }
+        $company=Company::findOrFail($id);
         return response()->json($company);
     }
     public function store(Request $request)

@@ -6,6 +6,8 @@
         <span class="text-muted h5"> / {{ activeTab }}</span>
       </div>
     </div>
+
+    <!-- for all type header -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link" :class="{ active: activeTab === 'All Accounts' }" @click="changeTab('All Accounts')"
@@ -53,6 +55,7 @@
     </ul>
 
     <div class="tab-content" id="myTabContent">
+      <!-- for all_types_accounts -->
       <div class="tab-pane fade show active" id="all-accounts" role="tabpanel" aria-labelledby="all-accounts-tab">
         <!-- Table part -->
         <div class="card mb-4 mt-3 tt">
@@ -246,6 +249,8 @@
           </div>
         </div>
       </div>
+
+      <!-- for create Account -->
       <div class="tab-pane fade" id="create-account" role="tabpanel" aria-labelledby="create-account-tab">
         <div class="row">
           <div class="col-lg-12">
@@ -380,13 +385,14 @@
           </div>
         </div>
       </div>
+
+      <!-- for customer part -->
       <div class="tab-pane fade" id="customer" role="tabpanel" aria-labelledby="customer-tab">
         <div class="mt-5">
           <ul class="">
             <!-- list-unstyled to remove bullet points -->
             <li class="mb-2">
-              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal"
-                @click="setModalContent('Customer Name')">Customer Name</a>
+              <a href="#" class="text-center" @click="OpenModal">Customer Name</a>
             </li>
             <li class="mb-2">
               <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">General Info</a>
@@ -412,9 +418,39 @@
           </ul>
         </div>
       </div>
+
+      <!-- for supplier part -->
       <div class="tab-pane fade" id="supplier" role="tabpanel" aria-labelledby="supplier-tab">
-        <!-- Content for Supplier -->
+        <div class="mt-5">
+          <ul class="">
+            <li class="mb-2">
+              <a href="#" class="text-center" @click="OpenSupplierModal">Supplier Name</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">General Info</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Business Info</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Bank Info</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Address</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Business Address</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Shipping Address</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-center" data-bs-toggle="modal" data-bs-target="#modal">Others Info</a>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <div class="tab-pane fade" id="ad-redact" role="tabpanel" aria-labelledby="ad-redact-tab">
         <!-- Content for Ad/Redact -->
       </div>
@@ -422,15 +458,15 @@
         <!-- Content for Loan/Credit -->
       </div>
     </div>
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+
+    <!-- for customer modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog modal-half-screen">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">{{ modalTitle }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>{{ modalContent }}</p>
             <div class="row">
               <div class="col-lg-12">
                 <div class="card rounded-lg mt-3">
@@ -442,12 +478,60 @@
                     <div class="code"></div>
                   </div>
                   <div class="card-body">
-                    <form enctype="multipart/form-data">
+                    <form @submit.prevent="createCustomer" enctype="multipart/form-data">
                       <div class="row mb-3">
                         <div class="col-md-12">
                           <div class="form-floating mb-3 mb-md-0">
-                            <input class="form-control" id="inputName" type="text" placeholder="Enter your name" />
+                            <input class="form-control" id="inputName" v-model="form_customer.customer_name" type="text"
+                              placeholder="Enter your name" />
                             <label for="inputName">Customer Name</label>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Create button -->
+                      <div class="mt-4 mb-0">
+                        <div class="d-grid">
+                          <button class="btn btn-primary w-100 mb-2">
+                            <span>Save</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- for supplier modal -->
+    <div class="modal fade" id="createSupplier" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-half-screen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card rounded-lg mt-3">
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="icon_text d-flex gap-2 mt-3">
+                      <p> <i class="fa-regular fa-address-card"></i></p>
+                      <p class="text-black font-bold">Supplier Create</p>
+                    </div>
+                    <div class="code"></div>
+                  </div>
+                  <div class="card-body">
+                    <form @submit.prevent="CreateSupplier" enctype="multipart/form-data">
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <div class="form-floating mb-3 mb-md-0">
+                            <input class="form-control" id="inputName" v-model="form_supplier.supplier_name" type="text"
+                              placeholder="Enter your name" />
+                            <label for="inputName">Supplier Name</label>
                           </div>
                         </div>
                       </div>
@@ -472,6 +556,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { inject } from "vue";
 export default {
   name: "AllAccount",
@@ -482,6 +567,17 @@ export default {
       activeTab: "All Accounts",
       bank: false,
       showDetails: false,
+      form_customer: {
+        customer_name: null,
+        company_id: null,
+        user_id: null,
+      },
+      form_supplier: {
+        supplier_name: null,
+        company_id: null,
+        user_id: null,
+      },
+      errors: {}
     };
   },
   methods: {
@@ -492,6 +588,52 @@ export default {
       );
       myModal.show();
       this.activeTab = "Customer";
+    },
+    OpenSupplierModal() {
+      let myModal = new bootstrap.Modal(
+        document.getElementById("createSupplier"),
+        {}
+      );
+      myModal.show();
+      this.activeTab = "Supplier";
+    },
+    async CreateSupplier() {
+      axios.post('/api/supplier/store', this.form_supplier)
+        .then((res) => {
+          const modalElement = document.getElementById("createSupplier");
+          const myModal = bootstrap.Modal.getInstance(modalElement);
+          if (myModal) {
+            myModal.hide();
+          }
+          const customerTab = new bootstrap.Tab(document.getElementById('supplier-tab'));
+          customerTab.show();
+          Toast.fire({
+            icon: "success",
+            title: res.data.message
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    async createCustomer() {
+      axios.post('/api/customer/store', this.form_customer)
+        .then((res) => {
+          const modalElement = document.getElementById("editUserModal");
+          const myModal = bootstrap.Modal.getInstance(modalElement);
+          if (myModal) {
+            myModal.hide();
+          }
+          const customerTab = new bootstrap.Tab(document.getElementById('customer-tab'));
+          customerTab.show();
+          Toast.fire({
+            icon: "success",
+            title: res.data.message
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     handleAccountType(event) {
       const selectedValue = event.target.value;
@@ -509,20 +651,25 @@ export default {
       axios
         .get(`/api/user_company_find/${this.company_id}`)
         .then((res) => {
-          if (res.data.companyName) {
-            this.companyName = res.data.companyName;
-            this.company_Name = res.data.companyName;
-          } else {
-            this.companyName = res.data.company_name;
-            this.company_Name = res.data.company_name;
-          }
+          this.company_Name = res.data.company_name;
+          this.form_customer.company_id = res.data.id
+          this.form_customer.user_id = res.data.user_id
+
+          this.form_supplier.company_id = res.data.id
+          this.form_supplier.user_id = res.data.user_id
+          this.fetchUsers()
         })
         .catch((error) => { });
     },
   },
   mounted() {
     this.company_id = localStorage.getItem("company_id");
-    this.companyfind();
+    if (this.company_id) {
+      this.companyfind();
+    }
+    else {
+      this.$router.push({ name: "AllCompany" })
+    }
   },
 };
 </script>
@@ -530,16 +677,13 @@ export default {
 <style scoped>
 ul.btn-list {
   list-style-type: none;
-  /* Remove bullets */
   padding: 0;
   display: flex;
   gap: 10px;
-  /* Add space between list items */
 }
 
 ul.btn-list li {
   display: inline-block;
-  /* Make list items inline */
 }
 
 ul.btn-list li a {
@@ -549,7 +693,6 @@ ul.btn-list li a {
   border-radius: 5px;
   color: #007bff;
   transition: background-color 0.3s, color 0.3s;
-  /* Smooth transition for hover */
 }
 
 ul.btn-list li a:hover {
@@ -559,13 +702,10 @@ ul.btn-list li a:hover {
 
 .modal-half-screen {
   max-width: 50vw;
-  /* Set width to 50% of viewport width */
   height: 50vh;
-  /* Set height to 50% of viewport height */
 }
 
 .modal-content {
-  height: 100%;
-  /* Ensure content stretches to full height of the modal */
+  height: 75%;
 }
 </style>

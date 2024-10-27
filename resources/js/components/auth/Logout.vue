@@ -17,6 +17,7 @@ export default {
         }
         else {
             User.logout();
+            localStorage.clear('company_id');
             this.$router.push({ name: "LoginForm" });
             Toast.fire({
                 icon: "success",
