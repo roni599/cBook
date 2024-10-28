@@ -133,7 +133,7 @@ export default {
         password: '',
         password_confirmation: '',
       },
-      timer: 60,
+      timer: 300,
       errors: {},
       after_send_otp_companyName: '',
       after_send_email: '',
@@ -154,7 +154,7 @@ export default {
           email: this.form.email,
           companyName: this.form.companyName,
         });
-        this.timer = 60;
+        this.timer = 300;
         this.startTimer();
         this.after_send_message = 'New OTP sent successfully!';
       } catch (error) {

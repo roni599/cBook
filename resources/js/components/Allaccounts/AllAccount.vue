@@ -370,7 +370,6 @@
                       </div>
                     </div>
                   </div>
-
                   <!-- Create button -->
                   <div class="mt-4 mb-0">
                     <div class="d-grid">

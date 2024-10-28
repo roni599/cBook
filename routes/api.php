@@ -4,6 +4,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Supplier\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +36,9 @@ Route::post('/customer/store', [CustomerController::class, 'store']);
 Route::get('/supplier', [SupplierController::class, 'index']);
 Route::get('/company_supplier/{id}', [SupplierController::class, 'company_supplier']);
 Route::post('/supplier/store', [SupplierController::class, 'store']);
+
+//for Products
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/company_products/{id}', [ProductController::class, 'company_products']);
+Route::post('/product/store', [ProductController::class, 'store']);
+

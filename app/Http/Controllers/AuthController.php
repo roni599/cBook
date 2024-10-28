@@ -46,14 +46,14 @@ class AuthController extends Controller
     public function sendOTP(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required',
         ]);
 
         $otp = rand(100000, 999999);
         OtpVerification::create([
             'email' => $request->email,
             'otp' => $otp,
-            'expires_at' => Carbon::now()->addMinutes(1),
+            'expires_at' => Carbon::now()->addMinutes(5),
         ]);
         SendOtpEmail::dispatch($request->email, $otp);
 

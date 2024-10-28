@@ -24,13 +24,13 @@
                         <thead>
                             <tr>
                                 <th>Customer Name</th>
-                                <th>Company Name</th>
+                                <!-- <th>Company Name</th> -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="customer in customers" :key="customer.id">
                                 <td>{{ customer.customer_name }}</td>
-                                <td>{{ customer.company.company_name }}</td>
+                                <!-- <td>{{ customer.company.company_name }}</td> -->
                             </tr>
                         </tbody>
                     </table>

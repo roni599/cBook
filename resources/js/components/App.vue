@@ -67,9 +67,8 @@
                                 </div>
                                 <span :class="{ 'text-primary': $route.path === '/all_account' }">All Accounts</span>
                             </router-link>
-
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                data-bs-target="#collapseParties" aria-expanded="false" aria-controls="collapseParties">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-users mt-1"></i>
                                 </div>
@@ -78,23 +77,34 @@
                                     <i class="fas fa-angle-down"></i>
                                 </div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            <div class="collapse" id="collapseParties" aria-labelledby="headingOne"
                                 data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <router-link to="/customer_list" class="nav-link">Customer</router-link>
-                                    <router-link to="supplier_list" class="nav-link">Supplier</router-link>
+                                    <router-link to="/supplier_list" class="nav-link">Supplier</router-link>
                                 </nav>
                             </div>
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                data-bs-target="#collapseItem" aria-expanded="false" aria-controls="collapseItem">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-users mt-1"></i>
                                 </div>
                                 Item
-                                <!-- <div class="sb-sidenav-collapse-arrow">
+                                <div class="sb-sidenav-collapse-arrow">
                                     <i class="fas fa-angle-down"></i>
-                                </div> -->
+                                </div>
                             </a>
+                            <div class="collapse" id="collapseItem" aria-labelledby="headingTwo"
+                                data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <router-link to="/item" class="nav-link">Item</router-link>
+                                    <router-link to="/service" class="nav-link">Service</router-link>
+                                </nav>
+                            </div>
+
+
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
@@ -135,16 +145,13 @@
                                     <i class="fas fa-angle-down"></i>
                                 </div>
                             </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <router-link class="nav-link collapsed" to="/purches">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-users mt-1"></i>
+                                    <i class="fas fa-th-large mt-1"></i>
                                 </div>
-                                Purchase
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
+                                <span>Purches</span>
+                            </router-link>
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
