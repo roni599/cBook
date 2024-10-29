@@ -23,12 +23,15 @@
                             <tr>
                                 <th>Product Name</th>
                                 <th>Unit</th>
+                                <th>Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="product in company_products" :key="product.id" @click="editProduct(product.id)" :style="{ cursor: 'pointer' }">
+                            <tr v-for="product in company_products" :key="product.id" @click="editProduct(product.id)"
+                                :style="{ cursor: 'pointer' }">
                                 <td>{{ product.product_name }}</td>
                                 <td>{{ product.unit }}</td>
+                                <td>{{ product.quantity }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -127,7 +130,8 @@
                             </ul>
                         </div>
                         <div class="content-display p-3" style="width: 80%;">
-                            <component :is="currentComponent" :productId="currentProductId" ref="productNameComponent"></component>
+                            <component :is="currentComponent" :productId="currentProductId" ref="productNameComponent">
+                            </component>
                         </div>
                     </div>
                 </div>
@@ -173,8 +177,8 @@ export default {
             const modal = new bootstrap.Modal(document.getElementById('Product_name'));
             modal.show();
         },
-        editProduct(id){
-            this.currentProductId = id; 
+        editProduct(id) {
+            this.currentProductId = id;
             const modal = new bootstrap.Modal(document.getElementById('Product_name'));
             modal.show();
         },
