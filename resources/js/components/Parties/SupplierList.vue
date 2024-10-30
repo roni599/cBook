@@ -20,17 +20,17 @@
       </div>
       <div class="card-body">
         <div class="table_size">
-          <table class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
                 <th>Supplier Name</th>
-                <!-- <th>Company Name</th> -->
+                <th>Amount</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="supplier in suppliers" :key="supplier.id">
                 <td>{{ supplier.supplier_name }}</td>
-                <!-- <td>{{ supplier.company.company_name }}</td> -->
+                <td>{{ supplier.amount }}</td>
               </tr>
             </tbody>
           </table>

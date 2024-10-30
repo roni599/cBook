@@ -2,15 +2,6 @@
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
-                <!-- <nav class="sb-topnav navbar navbar-expand navbar-info bg-info">
-                    <div class="container-fluid">
-                        <div class="ms-auto">
-                            <router-link class="btn text-white me-4" to="/logout"
-                                style="background-color: #17a2b8; border-color: #17a2b8;">Logout</router-link>
-                        </div>
-                    </div>
-                </nav> -->
-
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
@@ -53,14 +44,17 @@
 <script>
 import axios from 'axios';
 import User from '../../Helpers/User';
+import { inject } from 'vue';
 export default {
     name: "AllCompany",
     data() {
+        const company_Name = inject('company_Name');
         return {
             user_id: null,
             companies: [],
             mainCompany: '',
-            user_email: ''
+            user_email: '',
+            company_Name,
         }
     },
     methods: {
@@ -81,7 +75,10 @@ export default {
                     this.fetchLoggedInUserCompany();
                 })
                 .catch((error) => {
-                    console.log(error);
+                    if (error.response && error.response.status === 401) {
+                    } else {
+                        console.log(error);
+                    }
                 });
         },
         fetchLoggedInUserCompany() {
@@ -95,6 +92,24 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
+        },
+        async companyfind() {
+            console.log(this.company_id)
+            axios.get(`/api/user_company_find/${this.company_id}`)
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.companyName) {
+                        this.companyName = res.data.companyName
+                        this.company_Name = res.data.companyName
+                    }
+                    else {
+                        this.companyName = res.data.company_name
+                        this.company_Name = res.data.company_name
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     },
     mounted() {
@@ -102,6 +117,8 @@ export default {
             this.$router.push({ name: "LoginForm" });
         }
         this.user_id = localStorage.getItem('user');
+        this.company_id = localStorage.getItem('company_id')
+        this.companyfind()
     },
     created() {
         this.fetchLoginUser();

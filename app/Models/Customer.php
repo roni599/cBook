@@ -9,7 +9,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_name', 'user_id', 'company_id'];
+    protected $fillable = ['customer_name', 'user_id', 'company_id', 'amount'];
 
     public function user()
     {
@@ -23,5 +23,13 @@ class Customer extends Model
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
     }
 }

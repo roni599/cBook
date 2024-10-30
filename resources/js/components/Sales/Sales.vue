@@ -148,10 +148,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-    name: "Purches",
+    name: "Sales-vue",
     data() {
         return {
             customers: [],
@@ -317,7 +315,7 @@ export default {
                 customer_id: this.customer_id,
                 grandTotal: this.grandTotal,
             };
-            axios.post('/api/purchase/store', payload)
+            axios.post('/api/sales/store', payload)
                 .then((res) => {
                     if (res) {
                         this.rows.forEach((row, index) => {

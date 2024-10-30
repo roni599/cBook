@@ -4,15 +4,13 @@
 
 <script>
 export default {
-    name:"BrandCategory",
-    data(){
-        return{
-            
-        }
+  name: "BrandCategory",
+  data() {
+    return {
+
     }
+  }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

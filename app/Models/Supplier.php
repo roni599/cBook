@@ -12,6 +12,7 @@ class Supplier extends Model
         'supplier_name',
         'user_id',
         'company_id',
+        'amount'
     ];
 
     public function user()
@@ -21,5 +22,9 @@ class Supplier extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
     }
 }

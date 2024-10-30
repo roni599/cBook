@@ -105,16 +105,14 @@
 
 
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <router-link class="nav-link collapsed" to="/sales_list">
                                 <div class="sb-nav-link-icon">
-                                    <i class="fas fa-users mt-1"></i>
+                                    <i class="fas fa-th-large mt-1"></i>
                                 </div>
-                                Sales
-                                <div class="sb-sidenav-collapse-arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </div>
-                            </a>
+                                <span>Sales</span>
+                            </router-link>
+
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon">
@@ -145,7 +143,7 @@
                                     <i class="fas fa-angle-down"></i>
                                 </div>
                             </a>
-                            <router-link class="nav-link collapsed" to="/purches">
+                            <router-link class="nav-link collapsed" to="/purchase_list">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-th-large mt-1"></i>
                                 </div>

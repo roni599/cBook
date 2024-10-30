@@ -2,10 +2,12 @@
 
 //define route namespace
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Bill\BillController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Purchase\PurchaseController;
+use App\Http\Controllers\Sales\SaleController;
 use App\Http\Controllers\Supplier\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,5 +45,18 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/company_products/{id}', [ProductController::class, 'company_products']);
 Route::post('/product/store', [ProductController::class, 'store']);
 
+//for Purchase
 Route::get('/purchase', [PurchaseController::class, 'index']);
+Route::get('/purchase_products/{id}', [PurchaseController::class, 'purchase_products']);
 Route::post('/purchase/store', [PurchaseController::class, 'store']);
+Route::get('/sales_customer_products/{id}', [PurchaseController::class, 'sales_customer_products']);
+
+//for Sales
+Route::get('/sales', [SaleController::class, 'index']);
+Route::get('/sales_products/{id}', [SaleController::class, 'sales_products']);
+Route::post('/sales/store', [SaleController::class, 'store']);
+
+Route::get('/bills', [BillController::class, 'index']);
+Route::get('/bills_products/{id}', [BillController::class, 'sales_products']);
+Route::post('/bills/store', [BillController::class, 'store']);
+

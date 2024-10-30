@@ -4,15 +4,13 @@
 
 <script>
 export default {
-    name:"Unit-vue",
-    data(){
-        return{
-            
-        }
+  name: "Unit-vue",
+  data() {
+    return {
+
     }
+  }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

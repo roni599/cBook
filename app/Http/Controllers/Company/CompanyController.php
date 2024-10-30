@@ -15,13 +15,13 @@ class CompanyController extends Controller
     }
     public function user_allcompany($id)
     {
-        
+
         $companies = User::with('companies')->find($id);
         return response()->json($companies);
     }
     public function user_company_find($id)
     {
-        $company=Company::findOrFail($id);
+        $company = Company::findOrFail($id);
         return response()->json($company);
     }
     public function store(Request $request)

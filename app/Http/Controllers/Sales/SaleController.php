@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Purchase;
+namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bill;
 use App\Models\Customer;
 use App\Models\Product;
-use App\Models\Purchase;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
-class PurchaseController extends Controller
+class SaleController extends Controller
 {
     public function index()
     {
-        $purchase = Purchase::all();
+        $sales = Sale::all();
+        return response()->json($sales);
+    }
+
+    public function sales_products($id)
+    {
+        $purchase = Sale::where('company_id', $id)->get();
         return response()->json($purchase);
     }
-    public function purchase_products($id)
-    {
-        $purchase = Purchase::where('company_id', $id)->get();
-        return response()->json($purchase);
-    }
-    public function sales_customer_products($id)
-    {
-        $customer = Bill::where('customer_id', $id)->with('customer')->get();
-        return response()->json($customer);
-    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -44,16 +41,15 @@ class PurchaseController extends Controller
             'items.*.total' => 'required|numeric',
         ]);
         $bill = new Bill();
-        $bill->type = 'parse';
+        $bill->type = 'sale';
         $bill->customer_id = $request->customer_id;
         $bill->company_id = $request->company_id;
         $bill->user_id = $request->user_id;
         $bill->save();
 
         $bill_id = $bill->id;
-
         foreach ($request['items'] as $item) {
-            Purchase::create([
+            Sale::create([
                 'user_id' => $request['user_id'],
                 'company_id' => $request['company_id'],
                 'customer_id' => $request['customer_id'],
@@ -69,12 +65,12 @@ class PurchaseController extends Controller
             ]);
             $product = Product::find($item['product_id']);
             if ($product) {
-                $product->quantity += $item['qty'];
+                $product->quantity -= $item['qty'];
                 $product->save();
             }
             $customer = Customer::find($request['customer_id']);
             if ($customer) {
-                $customer->amount += $item['total'];
+                $customer->amount -= $item['total'];
                 $customer->save();
             }
             $bill_update = Bill::find($bill_id);
@@ -83,6 +79,6 @@ class PurchaseController extends Controller
                 $bill_update->save();
             }
         }
-        return response()->json(['message' => 'Purchase created successfully.']);
+        return response()->json(['message' => 'Sales created successfully.']);
     }
 }
